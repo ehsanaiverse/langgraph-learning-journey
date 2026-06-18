@@ -1,0 +1,12 @@
+langgraph
+langchain
+
+langchain-groq
+langchain-openrouter
+
+openrouter
+
+dotenv
+pydantic
+
+ipykernel
