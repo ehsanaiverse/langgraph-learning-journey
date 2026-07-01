@@ -10,3 +10,5 @@ dotenv
 pydantic
 
 ipykernel
+
+streamlit 
