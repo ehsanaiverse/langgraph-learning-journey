@@ -8,26 +8,15 @@ def generate_thread_id():
     thread_id = uuid.uuid4()
     return thread_id
 
-
-def generate_thread_title(user_input: str) -> str:
-    snippet = user_input.strip()
-    if len(snippet) > 40:
-        snippet = snippet[:37].rstrip() + "..."
-    return snippet or "New chat"
-
-
 def reset_chat():
     thread_id = generate_thread_id()
     st.session_state["thread_id"] = thread_id
     add_thread_id(st.session_state["thread_id"])
     st.session_state["message_history"] = []
-    st.session_state["thread_titles"][thread_id] = "New chat"
-
 
 def add_thread_id(thread_id):
     if thread_id not in st.session_state["chat_threads"]:
         st.session_state["chat_threads"].append(thread_id)
-        st.session_state["thread_titles"][thread_id] = "New chat"
         
 def load_coversation(thread_id):
     state = chatbot.get_state(config={"configurable": {"thread_id": thread_id}})
