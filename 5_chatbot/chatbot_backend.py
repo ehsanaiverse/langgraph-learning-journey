@@ -52,3 +52,12 @@ chatbot = graph.compile(checkpointer=checkpointer)
 
 
 
+# CONFIG={"configurable": {"thread_id": "thread-1"}}
+# response = chatbot.invoke(
+#     {"messages": [HumanMessage(content="Hi my name is Ehsan")]},
+#     config=CONFIG
+# )
+
+# print(chatbot.get_state(config=CONFIG).values["messages"])
+
+
