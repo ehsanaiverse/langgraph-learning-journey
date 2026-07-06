@@ -13,6 +13,7 @@ def reset_chat():
     st.session_state["thread_id"] = thread_id
     add_thread_id(st.session_state["thread_id"])
     st.session_state["message_history"] = []
+    st.session_state["chat_titles"][thread_id] = "New Chat"
 
 def add_thread_id(thread_id):
     if thread_id not in st.session_state["chat_threads"]:
@@ -34,6 +35,12 @@ if "thread_id" not in st.session_state:
 if "chat_threads" not in st.session_state:
     st.session_state["chat_threads"] = []
 
+if "chat_titles" not in st.session_state:
+    st.session_state["chat_titles"] = {}
+
+if st.session_state["thread_id"] not in st.session_state["chat_titles"]:
+    st.session_state["chat_titles"][st.session_state["thread_id"]] = "New Chat"
+
 add_thread_id(st.session_state["thread_id"])
 
 
@@ -46,7 +53,8 @@ if st.sidebar.button("New Chat"):
 st.sidebar.header("Convesation History")
 
 for thread_id in st.session_state["chat_threads"][::-1]:
-    if st.sidebar.button(str(thread_id)):
+    title = st.session_state["chat_titles"].get(thread_id, str(thread_id))
+    if st.sidebar.button(title, key=str(thread_id)):
         st.session_state["thread_id"] = thread_id
         messages = load_coversation(thread_id)
         
@@ -96,3 +104,7 @@ if user_input:
             )
 
     st.session_state["message_history"].append({"role": "assistant", "content": ai_message})
+
+    if st.session_state["chat_titles"][st.session_state["thread_id"]] == "New Chat":
+        title = user_input[:40] + ("..." if len(user_input) > 40 else "")
+        st.session_state["chat_titles"][st.session_state["thread_id"]] = title
