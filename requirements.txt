@@ -11,4 +11,6 @@ pydantic
 
 ipykernel
 
-streamlit 
+streamlit
+
+langgraph-checkpoint-sqlite
