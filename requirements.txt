@@ -21,3 +21,14 @@ ddgs
 langchain-mcp-adapter
 
 fastmcp
+
+pypdf
+
+langchain-huggingface
+sentence-transformers
+torchvision
+
+faiss-cpu
+faiss-gpu
+
+tempfile
